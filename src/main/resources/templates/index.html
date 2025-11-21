@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+    <title>Proxy Images</title>
+    <style>
+        .thumb {
+            width: 120px;
+            cursor: pointer;
+            margin: 10px;
+            border: 1px solid #ccc;
+        }
+        .item {
+            display: inline-block;
+            text-align: center;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Зображення (Proxy)</h2>
+
+<div>
+    <div th:each="img : ${images}" class="item">
+        <img class="thumb"
+             th:src="@{/images/preview/{filename}(filename=${img.name})}"
+             th:alt="${img.name}"
+             th:onclick="|loadFullImage('/images/full/${img.name}')|"/>
+        <p th:text="${img.name}"></p>
+    </div>
+</div>
+
+<script>
+    function loadFullImage(url) {
+        window.open(url, "_blank");
+    }
+</script>
+
+</body>
+</html>
