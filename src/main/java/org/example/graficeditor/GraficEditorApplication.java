@@ -2,14 +2,12 @@ package org.example.graficeditor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import proxy.Image;
-import proxy.ImageProxy;
 
 @SpringBootApplication
 public class GraficEditorApplication {
 
 	public static void main(String[] args) {
-		System.out.println("--- Запуск Редактора ---");
+		/*System.out.println("--- Запуск Редактора ---");
 		// Створюємо Проксі. Справжнє зображення ще не завантажено!
 		Image image1 = new ImageProxy("Photo_A_4K.jpg");
 		Image image2 = new ImageProxy("Vector_Icon.svg");
@@ -24,7 +22,7 @@ public class GraficEditorApplication {
 
 		System.out.println("\n--- Користувач знову клікає на Photo_A_4K.jpg ---");
 		// Реальний об'єкт вже завантажено, тому Проксі одразу делегує виклик
-		image1.display();
-		/*SpringApplication.run(GraficEditorApplication.class, args);*/
+		image1.display();*/
+		SpringApplication.run(GraficEditorApplication.class, args);
 	}
 }

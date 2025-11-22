@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="uk">
 <head>
-    <title>Proxy Images</title>
+    <meta charset="UTF-8">
+    <title>Decorator Graphic Editor</title>
     <style>
-        .thumb {
-            width: 120px;
-            cursor: pointer;
-            margin: 10px;
-            border: 1px solid #ccc;
-        }
-        .item {
-            display: inline-block;
-            text-align: center;
-            margin: 10px;
-        }
+        .shape { width: 100px; height: 100px; display: inline-block; margin: 10px; text-align: center; line-height: 100px; font-weight: bold; color: white; }
+        .circle { border-radius: 50%; background-color: #3498db; }
+        .square { background-color: #e74c3c; }
+        .border { border: 5px solid black; }
+        .shadow { box-shadow: 5px 5px 10px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
-
-<h2>Зображення (Proxy)</h2>
+<h2>Графічний редактор (Decorator)</h2>
 
 <div>
-    <div th:each="img : ${images}" class="item">
-        <img class="thumb"
-             th:src="@{/images/preview/{filename}(filename=${img.name})}"
-             th:alt="${img.name}"
-             th:onclick="|loadFullImage('/images/full/${img.name}')|"/>
-        <p th:text="${img.name}"></p>
-    </div>
+    <form method="get" th:action="@{/decorator}">
+        <label>Shape:</label>
+        <select name="shape">
+            <option value="circle">Circle</option>
+            <option value="square">Square</option>
+        </select>
+
+        <label>Decorator:</label>
+        <select name="decorator">
+            <option value="">None</option>
+            <option value="border">Border</option>
+            <option value="shadow">Shadow</option>
+            <option value="both">Border + Shadow</option>
+        </select>
+
+        <button type="submit">Draw</button>
+    </form>
 </div>
 
-<script>
-    function loadFullImage(url) {
-        window.open(url, "_blank");
-    }
-</script>
+<div>
+    <h3>Canvas:</h3>
+    <div th:each="g : ${graphics}" th:utext="${g.drawHtml()}"></div>
+</div>
 
 </body>
 </html>
